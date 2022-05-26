@@ -2,20 +2,16 @@ function getElementById(id){
     return document.getElementById(id);
 }
 
-function getVerticalMOAPerClick(){
-    return +getElementById("vertical-moa-per-click").value;
+function getInchesPerClick(){
+    return +getElementById("inches-per-click").value;
 }
 
-function getHorizontalMOAPerClick(){
-    return +getElementById("horizontal-moa-per-click").value;
+function getYards(){
+    return +getElementById("yards").value;
 }
 
-function getX(){
-    return +getElementById("x").value;
-}
-
-function getY(){
-    return +getElementById("y").value;
+function getOffset(){
+    return +getElementById("offset").value;
 }
 
 function getDistance(){
@@ -27,11 +23,11 @@ const referenceDistance = 100;
 const referenceMOA = 1.047;
 
 function saveScope(){
-    const verticalMOAPerClick = getVerticalMOAPerClick();
-    const horizontalMOAPerClick = getHorizontalMOAPerClick();
+    const inches = getInchesPerClick();
+    const yards = getYards();
     const scope = {
-        verticalMOAPerClick,
-        horizontalMOAPerClick
+        inches,
+        yards
     };
     localStorage.setItem("scope", JSON.stringify(scope));
 }
@@ -39,33 +35,30 @@ function saveScope(){
 function loadScope(){
     const scope = JSON.parse(localStorage.getItem("scope"));
     if(scope){
-        getElementById("vertical-moa-per-click").value = scope.verticalMOAPerClick;
-        getElementById("horizontal-moa-per-click").value = scope.horizontalMOAPerClick;
+        getElementById("inches-per-click").value = scope.inches;
+        getElementById("yards").value = scope.yards;
+    } else {
+        getElementById("yards").value = 100;
     }
 }
 
 function calculate(){
-    const verticalMOAPerClick = getVerticalMOAPerClick();
-    const horizontalMOAPerClick = getHorizontalMOAPerClick();
-    const x = getX();
-    const y = getY();
+    const inchesPerClick = getInchesPerClick();
+    const yards = getYards();
+    const offset = getOffset();
     const distance = getDistance();
+
+    console.log(inchesPerClick, yards, offset, distance);
 
     saveScope();
 
-    const inchesPerMOA = (distance / referenceDistance) * referenceMOA;
-    const xMOA = x / inchesPerMOA;
-    const yMOA = y / inchesPerMOA;
+    const clicks = Math.round((offset / inchesPerClick) * (yards / distance));
 
+    const xDirection = clicks > 0 ? "left" : "right";
+    const yDirection = clicks > 0 ? "down" : "up";
 
-    const xClicks = Math.round(xMOA / horizontalMOAPerClick);
-    const yClicks = Math.round(yMOA / verticalMOAPerClick);
-
-    const xDirection = xMOA > 0 ? "left" : "right";
-    const yDirection = yMOA > 0 ? "down" : "up";
-
-    getElementById('vertical').innerText = `${Math.abs(yClicks)} ${yDirection}`;
-    getElementById('horizontal').innerText = `${Math.abs(xClicks)} ${xDirection}`;
+    getElementById('clicks').innerText = Math.abs(clicks).toFixed(0);
+    getElementById('direction').innerText = `${xDirection} or ${yDirection}`;
 }
 
 document.onload = loadScope();

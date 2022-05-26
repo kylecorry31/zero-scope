@@ -10,21 +10,20 @@
     <h1>Zero Scope</h1>
 
     <h2>Scope</h2>
-    <input type="number" id="vertical-moa-per-click" placeholder="MOA per click (vertical)">
-    <input type="number" id="horizontal-moa-per-click" placeholder="MOA per click (horizontal)">
+    <input type="number" id="inches-per-click" placeholder="Inches per click">
+    <input type="number" id="yards" placeholder="At yards">
 
     <h2>Shot</h2>
-    <input type="number" id="distance" placeholder="Distance (yards)">
-    <input type="number" id="x" placeholder="Horizontal offset (inches, left is negative)">
-    <input type="number" id="y" placeholder="Vertical offset (inches, below is negative)">
+    <input type="number" id="distance" placeholder="Shooting distance (yards)">
+    <input type="number" id="offset" placeholder="Missed by (inches, left/below is negative)">
 
     <br>
     <br>
     <button onclick="calculate()">Calculate</button>
 
     <h2>Results</h2>
-    <p id="vertical"></p>
-    <p id="horizontal"></p>
+    <p id="clicks"></p>
+    <p id="direction"></p>
 </body>
 
 <script src="script.js"></script>
