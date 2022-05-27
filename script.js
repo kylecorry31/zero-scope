@@ -54,11 +54,11 @@ function calculate(){
 
     const clicks = Math.round((offset / inchesPerClick) * (yards / distance));
 
-    const xDirection = clicks > 0 ? "left" : "right";
-    const yDirection = clicks > 0 ? "down" : "up";
+    const xDirection = clicks > 0 ? "Left" : "Right";
+    const yDirection = clicks > 0 ? "Down" : "Up";
 
-    getElementById('clicks').innerText = Math.abs(clicks).toFixed(0);
-    getElementById('direction').innerText = `${xDirection} or ${yDirection}`;
+    getElementById('clicks').innerText = `${Math.abs(clicks)} Clicks`;
+    getElementById('direction').innerText = `${xDirection} / ${yDirection}`;
 }
 
 document.onload = loadScope();

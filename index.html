@@ -5,17 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zero Scope</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Zero Scope</h1>
+    <h2>Scope Info</h2>
+    <input type="number" id="inches-per-click" placeholder="Inches / click">inches / click at 
+    <input type="number" id="yards" placeholder="Yards"> yd
 
-    <h2>Scope</h2>
-    <input type="number" id="inches-per-click" placeholder="Inches per click">
-    <input type="number" id="yards" placeholder="At yards">
-
-    <h2>Shot</h2>
-    <input type="number" id="distance" placeholder="Shooting distance (yards)">
-    <input type="number" id="offset" placeholder="Missed by (inches, left/below is negative)">
+    <h2>Shot Info</h2>
+    Missed by <input type="number" id="offset" placeholder="Inches">inches at
+    <input type="number" id="distance" placeholder="Yards"> yd
 
     <br>
     <br>
@@ -24,6 +23,9 @@
     <h2>Results</h2>
     <p id="clicks"></p>
     <p id="direction"></p>
+
+
+    <small id="help">Misses to the left / below are negative</small>
 </body>
 
 <script src="script.js"></script>
